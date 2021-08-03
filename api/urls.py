@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .api import PostViewSet, TagViewSet
+from .views import PostViewSet, TagViewSet
 
 router = routers.DefaultRouter()
 router.register('api/posts', PostViewSet, 'post')
