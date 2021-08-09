@@ -10,7 +10,6 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
 
     def create(self, request, *args, **kwargs):
-        print('========== 1', request.FILES)
         write_serializer = PostSerializer(data=request.data)
         write_serializer.is_valid(raise_exception=True)
         instance = write_serializer.save()
@@ -23,10 +22,8 @@ class PostViewSet(viewsets.ModelViewSet):
                 new_tag = Tag.objects.create(title=i, slug=i)
                 instance.tags.add(new_tag)
         if request.FILES:
-            print('========== 2', request.FILES)
-            print('========== 3', request.FILES['document'])
-            print('========== 2', request.FILES)
-            print('========== 2', request.FILES)
+            for file in request.FILES.getlist('document'):
+                instance.media.create(document=file)
 
         return Response(read_serializer.data)
 

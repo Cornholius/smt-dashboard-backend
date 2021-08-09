@@ -19,7 +19,7 @@ class Post(models.Model):
     # published_date = models.DateTimeField(blank=True, null=True)
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
     document = models.FileField(blank=True)
-    image = models.ImageField(blank=True, upload_to='images/')
+    # image = models.ImageField(blank=True, upload_to='images/')
     #
     # def publish(self):
     #     self.published_date = timezone.now()
