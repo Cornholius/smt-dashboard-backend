@@ -1,3 +1,4 @@
+from os import name
 from rest_framework.response import Response
 from .models import Post, Tag, Media
 from rest_framework import viewsets, permissions
@@ -23,7 +24,9 @@ class PostViewSet(viewsets.ModelViewSet):
                 instance.tags.add(new_tag)
         if request.FILES:
             for file in request.FILES.getlist('document'):
-                instance.media.create(document=file)
+                print('----------------------', request.FILES.getlist('document'))
+                print('----------------------', file.name)
+                instance.media.create(document=file, name=file.name)
 
         return Response(read_serializer.data)
 
