@@ -24,11 +24,11 @@ class PostViewSet(viewsets.ModelViewSet):
                 instance.tags.add(new_tag)
         if request.FILES:
             for file in request.FILES.getlist('document'):
-                print('----------------------', request.FILES.getlist('document'))
-                print('----------------------', file.name)
                 instance.media.create(document=file, name=file.name)
+                print(instance.media)
 
         return Response(read_serializer.data)
+
 
 
 class TagViewSet(viewsets.ModelViewSet):
